@@ -1,16 +1,15 @@
-import './App.css';
-// import React from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Results from './pages/Results.jsx';
+// import NavBar from './components/NavBar.jsx';
 import NotFound from './pages/Notfound.jsx'; //If file path error, check here first
 
 function App() {
   return (
-    <div className='App'>
+    <BrowserRouter>
       <Routes>
         {/* Use the helper function to apply the layout */}
         <Route path='/' element={<Home />} />
@@ -20,7 +19,7 @@ function App() {
         {/* Catch-all route without the layout */}
         <Route path='*' element={<NotFound />} />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 
