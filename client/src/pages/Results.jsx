@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import ResultCard from '../components/ResultCard';
-import { useState } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 
 const results = () => {
@@ -13,7 +12,7 @@ const results = () => {
       <button>Furthest</button>
       <div>
         {locations.map((locale, index) => {
-          return <ResultCard value={locale} key={index} price={lacale.price} />;
+          return <ResultCard value={locale} key={index} price={locale.price} />;
         })}
       </div>
     </div>
