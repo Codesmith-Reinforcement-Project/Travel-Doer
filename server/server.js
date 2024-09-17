@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const {checkDatabaseConnection} = require('./models/database');
+const flightRoutes = require('./routes/flightRoutes');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -14,6 +15,8 @@ checkDatabaseConnection();
 app.get('/', (req, res) => {
   res.send('Hello')
 });
+
+app.use('/api', flightRoutes);
 
 app.use((req, res) => {
   res.status(404).send('Page not found');
