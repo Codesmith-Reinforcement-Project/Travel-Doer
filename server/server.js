@@ -1,11 +1,15 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const {checkDatabaseConnection} = require('./models/database');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+checkDatabaseConnection();
 
 app.get('/', (req, res) => {
   res.send('Hello')
