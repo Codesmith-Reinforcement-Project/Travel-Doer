@@ -9,20 +9,22 @@ const searchFlights = async (req, res) => {
 
     if (data.search_metadata.status === 'Success') {
       const url = data.search_metadata.google_flights_url;
-      const flightDetails = data.other_flights.length > 0 ? data.other_flights[0] : null;
-
-      let arrivalImage = null;
       
-      if (data.airports && data.airports.length > 0) {
-        const arrivalAirport = data.airports[0].arrival[0];
-        arrivalImage = arrivalAirport?.image || null;
-      }
+      const filteredBest = data.best_flights
+        ? data.best_flights.filter(flight => flight.price <= budget)
+        : [];
+      const filteredOther = data.other_flights
+        ? data.other_flights.filter(flight => flight.price <= budget)
+        : [];
 
-      res.json({
-        flightDetails,
-        bookingLink: url,
-        destinationImage: arrivalImage
-      });
+      const filteredData = {
+        ...data,
+        other_flights: filteredOther,
+        best_flights: filteredBest,
+        search_metadata: { google_flights_url: url },
+      };
+
+      res.json(filteredData);
     } else {
       res.status(404).json({ error: 'No flights found' });
     }
