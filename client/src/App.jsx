@@ -4,11 +4,13 @@ import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Results from './pages/Results.jsx';
-// import NavBar from './components/NavBar.jsx';
+import NavBar from './pages/NavBar.jsx';
 import NotFound from './pages/Notfound.jsx'; //If file path error, check here first
 
 function App() {
   return (
+    <>
+    <NavBar/>
     <BrowserRouter>
       <Routes>
         {/* Use the helper function to apply the layout */}
@@ -20,6 +22,7 @@ function App() {
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 
