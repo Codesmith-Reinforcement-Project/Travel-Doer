@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const {checkDatabaseConnection} = require('./models/database');
 
 const PORT = process.env.PORT || 8080;
@@ -14,6 +15,8 @@ checkDatabaseConnection();
 app.get('/', (req, res) => {
   res.send('Hello')
 });
+
+// app.use('/api/auth', )
 
 app.use((req, res) => {
   res.status(404).send('Page not found');
