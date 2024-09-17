@@ -73,6 +73,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  flex: 1 1 0;
+
 }
 
 input[type="email"], input[type="password"] {
@@ -103,3 +105,23 @@ button:hover {
 }
 
 /********** LOGIN & SIGN UP***********/
+
+/********** NOT FOUND ***********/
+.notfound-container {
+  background: url('./assets/notfound.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 50px;
+  border-radius: 10px;
+  flex-wrap:wrap
+}
+
+/********** NOT FOUND ***********/
+
