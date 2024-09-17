@@ -1,11 +1,12 @@
-const resultCard = ({ value, key, price }) => {
+import Results from '../pages/Results';
+
+const ResultCard = ({ cardClick, props }) => {
   return (
-    <div>
-      <div>This is the resultCard!</div>
-      <div>{value.location}</div>
-      <div>{price}</div>
+    <div onClick={cardClick}>
+      <div>{props.value.location}</div>
+      <div>{props.price}</div>
     </div>
   );
 };
 
-export default resultCard;
+export default ResultCard;

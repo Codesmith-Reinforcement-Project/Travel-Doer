@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import ResultCard from '../components/ResultCard';
-import { useState } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 
-const results = () => {
-  const [locations, setLocations] = useState('');
+const Results = () => {
+  const [locations, setLocations] = useState([]);
+  const [bool, setBool] = useState(false);
+  function cardClick() {
+    setBool(true);
+  }
+
   //   const locales = useSelector((state) => state.locations);
   return (
     <div>
@@ -13,11 +17,19 @@ const results = () => {
       <button>Furthest</button>
       <div>
         {locations.map((locale, index) => {
-          return <ResultCard value={locale} key={index} price={lacale.price} />;
+          return (
+            <ResultCard
+              value={locale}
+              key={index}
+              locations={locations}
+              setLocations={setLocations}
+              cardClick={cardClick}
+            />
+          );
         })}
       </div>
     </div>
   );
 };
 
-export default results;
+export default Results;
