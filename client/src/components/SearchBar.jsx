@@ -1,3 +1,6 @@
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { populateState, populateResults } from '../reducers/travelReducer.js';
@@ -51,45 +54,47 @@ const SearchBar = () => {
   // console.log('origin', origin, 'destination', destination, 'budget', budget, 'initialdate', initialDate, 'returndate', returnDate);
 
   return (
-    <div className='searchBox'>
-      {/* props.MarketID */}
-      <div className = 'searchBox-text'>
-        Origin
-        <input id='originBox' onChange={handleInputChange(setOrigin)}></input>
-      </div>
+    <AppBar position="static" sx={{ bgcolor: "#7dbe98" }}>
+        <Toolbar>
+          {/* props.MarketID */}
+          <div>
+            Origin
+            <input id='originBox' onChange={handleInputChange(setOrigin)}></input>
+          </div>
 
-      <div className = 'searchBox-text'>
-        Destination
-        <input
-          id='destinationBox'
-          onChange={handleInputChange(setDestination)}
-        ></input>
-      </div>
+          <div>
+            Destination
+            <input
+              id='destinationBox'
+              onChange={handleInputChange(setDestination)}
+            ></input>
+          </div>
 
-      <div className = 'searchBox-text'>
-        Budget
-        <input id='budgetBox' onChange={handleInputChange(setBudget)}></input>
-      </div>
+          <div>
+            Budget
+            <input id='budgetBox' onChange={handleInputChange(setBudget)}></input>
+          </div>
 
-      <div className = 'searchBox-text'>
-        Start Date
-        <input
-          id='initialDateBox'
-          onChange={handleInputChange(setStartDate)}
-        ></input>
-      </div>
+          <div>
+            Start Date
+            <input
+              id='initialDateBox'
+              onChange={handleInputChange(setStartDate)}
+            ></input>
+          </div>
 
-      <div className = 'searchBox-text'>
-        End Date
-        <input
-          id='returnDateBox'
-          onChange={handleInputChange(setEndDate)}
-        ></input>
-      </div>
-      {/* <Link to='/results'> */}
-      <button onClick={handleSearch}>Search</button>
-      {/* </Link> */}
-    </div>
+          <div>
+            End Date
+            <input
+              id='returnDateBox'
+              onChange={handleInputChange(setEndDate)}
+            ></input>
+          </div>
+          {/* <Link to='/results'> */}
+          <button onClick={handleSearch}>Search</button>
+          {/* </Link> */}
+      </Toolbar>
+    </AppBar>
   );
 };
 export default SearchBar;
