@@ -21,7 +21,6 @@ const homepage = () => {
         <h3 className = 'home-div'>
             Quality Traveling on a Budget
         </h3> */}
-        <SearchBar/>
     </div>
   );
 };
