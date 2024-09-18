@@ -25,7 +25,7 @@ const Results = () => {
       <button>Cheapest</button>
       <button>Furthest</button>
 
-      <div>
+      <div className='card-container'>
         {locations.bestFlights.map((locale, index) => {
           return (
             <ResultCard

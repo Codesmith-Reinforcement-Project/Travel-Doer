@@ -6,6 +6,8 @@
 }
 
 body {
+  display: grid;
+  place-content: center;
   font-family: Arial, sans-serif;
 }
 /********** GLOBAL STYLING ***********/
@@ -135,3 +137,46 @@ button:hover {
   justify-content:center;
 }
 /********** HOMEPAGE ***********/
+
+/********** POPUP ***********/
+#popup {
+  color: #83b799;
+  position: relative;
+  background-color: #E4D8B4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  height: 40%;
+  z-index: 1100;
+}
+
+.popup-backdrop {
+  background-color: #83b799;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vw;
+  background: rgba(0, 0, 0, 0.139);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+
+}
+
+/********** POPUP ***********/
+
+/********** RESULTS ***********/
+.card-container {
+
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+
+/********** RESULTS ***********/

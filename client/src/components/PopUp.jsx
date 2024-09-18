@@ -7,14 +7,16 @@ const PopUp = ({ bool, setBool, selectedLocale, airports }) => {
   // const arrCityPic = locale.airports[0].arrival[0].image;
   // const arrCityPicThumb = locale.airports[0].arrival[0].thumbnail;
   // if (best_flights[0].layovers.length)
-
+  //keep an eye on the setBool to false... could cause an error... maybe.
   if (!bool || !selectedLocale) {
     return null;
   }
   return (
-    <div>
-      flightInfoObjblah
-      <button>Go</button>
+    <div className='popup-backdrop' onClick={() => setBool(false)}>
+      <div id='popup'>
+        flightInfoObjblah
+        <button>Go</button>
+      </div>
     </div>
   );
 };
