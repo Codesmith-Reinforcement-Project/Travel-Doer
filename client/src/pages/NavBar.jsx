@@ -24,7 +24,7 @@ return (
             <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Travel Doer
+            Véntûre
         </Typography>
         <Box>
             <Button color="inherit">Home</Button>
