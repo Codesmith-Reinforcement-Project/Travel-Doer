@@ -1,34 +1,44 @@
-import {Link} from 'react-router-dom';
+import React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Box from '@mui/material/Box';
+import SignupComponent from './Signup.jsx';
 
 const Navbar = () => {
-    return (    
-        <div>
-                <div className='nav' id = 'topnav'>
-                    <div className='Home'>
-                        <Link to="/">Home</Link>
-                    </div>
-                    <div className='Results'>
-                        <Link to="/results">Results</Link>
-                </div>
-                    <div className='Results'>
-                        <Link to="/results">Results</Link>
-                    </div>
-                </div>
+    // const [open, setOpen] = React.useState(false);
 
-                <div className='nav' id = 'rightnav'>
-                    <div className='Sign Up'>
-                        <Link to="/signup">Sign Up</Link>
-                    </div>
-                    <div className='Log In'>
-                        <Link to="/login">Log In</Link>
-                    </div>
-                </div>
+    // const handleClickOpen = () => {
+    //     setOpen(true);
+    // }
 
-                
-        </div>
-
-    )
-
-}
-
-export default Navbar;
+return (
+    <AppBar position="static">
+        <Toolbar>
+        <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+        >
+            <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Navbar
+        </Typography>
+        <Box>
+            <Button color="inherit">Home</Button>
+            <Button color="inherit">About</Button>
+            <Button color="inherit">Contact</Button>
+            <SignupComponent/>
+        </Box>
+        </Toolbar>
+    </AppBar>
+    );
+  };
+  
+  export default Navbar;

@@ -15,7 +15,7 @@ function App() {
         {/* Use the helper function to apply the layout */}
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
+
         <Route path='/results' element={<Results />} />
         {/* Catch-all route without the layout */}
         <Route path='*' element={<NotFound />} />

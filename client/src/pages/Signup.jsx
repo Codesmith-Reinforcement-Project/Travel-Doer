@@ -1,21 +1,67 @@
-const signup = () => {
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+function signup() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+ 
   return (
-    <div className = 'signup-container'>
-      <form action='' method='post' className='signup-form'>
-        <div className='signup-form'>
-          <label>Enter your email: </label>
-          <input type='email' name='email' id='email' placeholder = 'email' required />
-        </div>
-        <div className='signup-form'>
-          <label>Enter your password: </label>
-          <input type='password' name='password' id='password' placeholder = 'password' required />
-        </div>
-        <div className='signup-form'>
-          <button type="submit" id="signupBtn">Login</button>
-        </div>
-      </form>
-    </div>
-  )
-};
+    <React.Fragment>
+      <Button variant="outlined" color="inherit" onClick={handleClickOpen}>
+        Sign Up
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        PaperProps={{
+          component: 'form',
+          onSubmit: (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.currentTarget);
+            const formJson = Object.fromEntries(formData.entries());
+            const email = formJson.email;
+            console.log(email);
+            handleClose();
+          },
+        }}
+      >
+        <DialogTitle>Sign Up</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To sign up, please enter your email address and password. 
+          </DialogContentText>
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="name"
+            name="email"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit">Subscribe</Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+  );
+}
 
 export default signup;
