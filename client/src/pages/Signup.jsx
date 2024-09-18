@@ -43,6 +43,15 @@ function signup() {
                 email: email,
                 password: password
               });
+              await console.log(response);
+              if (response.data === 'user successfully added...') {
+                // const result = await response.json();
+                alert('Sign up successful! Welcome!');
+                // Handle success (e.g., show a notification or redirect)
+              } else {
+                alert('Sign up failed: ' + response.data);
+                // Handle error (e.g., show an error message)
+              }
             } catch (error) {
               console.error('Error signing up:', error);
               // Handle network or other errors
