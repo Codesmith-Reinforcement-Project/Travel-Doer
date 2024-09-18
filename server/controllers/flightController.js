@@ -1,12 +1,11 @@
 const searchFlights = async (req, res) => {
     try {
     const { origin, destination, startDate, endDate, budget } = req.body;
-
     const apiUrl = `https://serpapi.com/search?engine=google_flights&departure_id=${origin}&arrival_id=${destination}&outbound_date=${startDate}&return_date=${endDate}&currency=USD&adults=1&max_price=${budget}&api_key=${process.env.SERPAPI_KEY}`;
 
     const response = await fetch(apiUrl);
     const data = await response.json();
-
+    
     if (data.search_metadata.status === 'Success') {
       const url = data.search_metadata.google_flights_url;
       
