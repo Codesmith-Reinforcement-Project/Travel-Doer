@@ -1,18 +1,19 @@
-const PopUp = ({ bool, setBool, flightInfoObj, locale }) => {
-  const depAirport = locale.best_flights[0].flights[0].departure_airport;
-  const arrAirport = locale.best_flights[0].flights[0].arrival_airport;
-  const price = locale.best_flights[0].price;
-  const arrCity = locale.airports[0].arrival[0].city;
-  const arrCityPic = locale.airports[0].arrival[0].image;
-  const arrCityPicThumb = locale.airports[0].arrival[0].thumbnail;
+const PopUp = ({ bool, setBool, selectedLocale, airports }) => {
+  // const depAirport = locale.flightsInfo[0].departure.name;
+  console.log('this is locale passed in: ', selectedLocale);
+  const arrAirport = selectedLocale.flightsInfo[0].arrival.name;
+  const price = selectedLocale.price;
+  // const arrCity = locale.airports[0].arrival[0].city;
+  // const arrCityPic = locale.airports[0].arrival[0].image;
+  // const arrCityPicThumb = locale.airports[0].arrival[0].thumbnail;
   // if (best_flights[0].layovers.length)
 
-  if (!bool || !flightInfoObj) {
+  if (!bool || !selectedLocale) {
     return null;
   }
   return (
     <div>
-      flightInfoObj
+      flightInfoObjblah
       <button>Go</button>
     </div>
   );

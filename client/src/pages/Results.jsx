@@ -1,33 +1,54 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import ResultCard from '../components/ResultCard';
-// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import PopUp from '../components/PopUp';
 
 const Results = () => {
-  const [locations, setLocations] = useState([]);
-  const [bool, setBool] = useState(false);
-  function cardClick() {
-    setBool(true);
+  // const [bool, setBool] = useState(false);
+  const [selectedLocale, setSelectedLocale] = useState(null);
+  function cardClick(dest) {
+    // setBool(true);
+    setSelectedLocale(dest);
   }
+  // const dylan = useSelector((state) => state.travel);
+  // const kenny = useSelector((state) => state.results.bestFlights);
+  const jonathan = useSelector((state) => state);
+  const locations = useSelector((state) => state.travel.results);
 
-  //   const locales = useSelector((state) => state.locations);
+  // console.log('Here is the dylan : ', dylan);
+  // console.log('Here is the kenny : ', kenny);
+  console.log('Here is the jonathan : ', jonathan);
+  console.log('Here is the locations : ', locations);
   return (
     <div>
       <h1>Your Vacation!!</h1>
       <button>Cheapest</button>
       <button>Furthest</button>
+
       <div>
-        {locations.map((locale, index) => {
+        {locations.bestFlights.map((locale, index) => {
           return (
             <ResultCard
               locale={locale}
               key={index}
-              locations={locations}
-              setLocations={setLocations}
-              cardClick={cardClick}
+              cardClick={() => {
+                setSelectedLocale(locale);
+              }}
+              airports={locations.airports}
             />
           );
         })}
       </div>
+      {!!selectedLocale && (
+        <PopUp
+          bool={!!selectedLocale}
+          setBool={() => {
+            setSelectedLocale(null);
+          }}
+          selectedLocale={selectedLocale}
+          airports={locations.airports}
+        />
+      )}
     </div>
   );
 };

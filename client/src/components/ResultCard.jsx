@@ -21,18 +21,19 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
 export default function ResultCard({
-  locations,
-  cardClick,
-  setLocations,
   locale,
+  cardClick,
+  airports,
+  bool,
+  setBool,
 }) {
   // const depAirport = locale.best_flights[0].flights[0].departure_airport;
-  const arrAirport = locale.best_flights[0].flights[0].arrival_airport;
-  const price = locale.best_flights[0].price;
+  const arrAirport = locale.flightsInfo[0].arrival.name;
+  const price = locale.price;
   // if (best_flights[0].layovers.length)
-  const arrCity = locale.airports[0].arrival[0].city;
-  const arrCityPic = locale.airports[0].arrival[0].image;
-  const arrCityPicThumb = locale.airports[0].arrival[0].thumbnail;
+  // const arrCity = locale.airports[0].arrival[0].city;
+  // const arrCityPic = airports[0].arrival[0].image; //<----
+  // const arrCityPicThumb = airports[0].arrival[0].thumbnail; //<----
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -46,9 +47,9 @@ export default function ResultCard({
           </Typography>
         </CardContent>
         {/* <CardActions>
-        <Button size='small'>Share</Button>
-        <Button size='small'>Learn More</Button>
-      </CardActions> */}
+          <Button size='small'>Share</Button>
+          <Button size='small'>Learn More</Button>
+        </CardActions> */}
         <CardMedia
           sx={{ height: 140 }}
           image='/static/images/cards/contemplative-reptile.jpg'
