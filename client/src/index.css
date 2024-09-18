@@ -130,7 +130,8 @@ button:hover {
   height: 100vh;
   display: block;
   /* position: relative; */
-  background: url('./assets/homepage.jpeg') no-repeat center top;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('./assets/homepage.jpeg');
+  /* background: url('./assets/homepage.jpeg') no-repeat center top; */
   background-size: cover; /* Scale the image to cover the entire container */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -144,3 +145,16 @@ button:hover {
   justify-content: center;
 } */
 /********** HOMEPAGE ***********/
+
+.searchBox {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 3rem;
+  height: 180px;
+  align-items:end
+}
+
+.searchBox-text {
+  color: white;
+}

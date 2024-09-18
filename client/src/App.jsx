@@ -4,7 +4,7 @@ import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Results from './pages/Results.jsx';
-import NavBar from './pages/NavBar.jsx';
+// import NavBar from './pages/NavBar.jsx';
 import SearchBar from './components/SearchBar.jsx'
 import NotFound from './pages/Notfound.jsx'; //If file path error, check here first
 

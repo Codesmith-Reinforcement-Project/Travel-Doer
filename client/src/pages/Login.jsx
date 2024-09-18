@@ -9,14 +9,19 @@ import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
 
 function login() {
+  let successful = false;
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (e) => {
     setOpen(true);
+    // console.log(e.target.innerText);
+    // if (successful) e.target.innerText = 'LOG OUT'
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
     setOpen(false);
+    // console.log(e.target)
+    // if (successful) e.target.innerText = 'LOG OUT'
   };
  
   return (
@@ -43,8 +48,9 @@ function login() {
                 email: email,
                 password: password
               });
-              await console.log(response.data)
+              
               if (response.data) {
+                successful = true;
                 // const result = await response.json();
                 alert('Log in successful: Welcome ', email);
                 // Handle success (e.g., show a notification or redirect)

@@ -6,21 +6,18 @@ const homepage = () => {
   return (
     <div className = 'homepage-container'>
       <Typography level="h1" sx={{ 
-        fontSize: '55px', 
+        fontSize: '75px', 
         mb: 0.5, 
         color:'#272324',
         display: 'flex',
         alignItems: 'end',
         justifyContent: 'center',
         width: '104%',
-        height: '33vh'}}>
+        height: '25vh',
+        }}>
         Véntûre
         </Typography>
-        {/* <h1 className = 'home-div'> Véntûre
-        </h1>
-        <h3 className = 'home-div'>
-            Quality Traveling on a Budget
-        </h3> */}
+        {/* <SearchBar/> */}
     </div>
   );
 };
