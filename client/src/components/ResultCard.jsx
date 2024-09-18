@@ -43,7 +43,7 @@ export default function ResultCard({
             {arrAirport}
           </Typography>
           <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-            {price}
+            ${price}
           </Typography>
         </CardContent>
         {/* <CardActions>

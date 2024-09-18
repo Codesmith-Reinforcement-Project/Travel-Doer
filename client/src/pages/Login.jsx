@@ -43,6 +43,15 @@ function login() {
                 email: email,
                 password: password
               });
+              await console.log(response.data)
+              if (response.data) {
+                // const result = await response.json();
+                alert('Log in successful: Welcome ', email);
+                // Handle success (e.g., show a notification or redirect)
+              } else {
+                alert('Log in unsuccessful! Check email and password.');
+                // Handle error (e.g., show an error message)
+              }
             } catch (error) {
               console.error('Error signing up:', error);
               // Handle network or other errors

@@ -8,11 +8,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
 import SignupComponent from './Signup.jsx';
 import LoginComponent from './Login.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-
+    const navigate = useNavigate();
 return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: "#83B799" }}>
         <Toolbar>
         <IconButton
             size="large"
@@ -27,9 +28,9 @@ return (
             Véntûre
         </Typography>
         <Box>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">About</Button>
-            <Button color="inherit">Contact</Button>
+            <Button color="inherit" onClick={() => navigate('/')}>Home</Button>
+            <Button color="inherit" onClick={() => navigate('/')}>About</Button>
+            <Button color="inherit" onClick={() => navigate('/')} >Contact</Button>
             <LoginComponent/>
             <SignupComponent/>
         </Box>

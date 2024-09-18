@@ -20,10 +20,10 @@ const Results = () => {
   console.log('Here is the jonathan : ', jonathan);
   console.log('Here is the locations : ', locations);
   return (
-    <div>
+    <div className='results-outer'>
       <h1>Your Vacation!!</h1>
-      <button>Cheapest</button>
-      <button>Furthest</button>
+      {/* <button>Cheapest</button>
+      <button>Furthest</button> */}
 
       <div className='card-container'>
         {locations.bestFlights.map((locale, index) => {
