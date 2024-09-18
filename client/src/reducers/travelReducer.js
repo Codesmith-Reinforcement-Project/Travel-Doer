@@ -1,16 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import parseFlights from './helperReducer.js';
 const initialState = {
   origin: '',
   destination: '',
   budget: 0,
-  initialDate: '',
-  returnDate: '',
-  totalMarkets: 0,
-  totalCards: 0,
-  marketList: [],
-  lastMarketId: 10000,
-  newLocation: '',
+  startDate: '',
+  endDate: '',
+  savedUrl: '',
+  results: {},
+  /*
+  results array format
+    url : the flight url to be saved
+    bestflights: [{
+      flightsInfo: [{departure, arrival, airline, logo, duration class, moreInfo: []}, {}, ..., {}],
+      total_duration, 
+      price, 
+      moreInfo: []
+    }, {}, ..., {}]
+    otherflights: [] (same structure as bestflights)
+    airports: [] (same as documentation)
+  */
 };
 
 const travelSlice = createSlice({
@@ -18,145 +27,21 @@ const travelSlice = createSlice({
   initialState,
   reducers: {
     populateState: (state, action) => {
-      const { origin, destination, budget, initialDate, returnDate } =
-        action.payload;
+      const { origin, destination, budget, startDate, endDate } = action.payload;
+      // console.dir(state.origin);
+      // console.log('newstuff', origin, destination, budget, startDate, endDate);
 
-      return Object.assign({}, state, {
-        origin,
-        destination,
-        budget,
-        initialDate,
-        returnDate,
-      });
+      return {...state, origin, destination, budget, startDate, endDate, };
     },
-    addMarket: (state) => {
-      const currMarketId = state.lastMarketId + 1;
-      const currTotalMarkets = state.totalMarkets + 1;
-      const currTotalCards = state.totalCards + 1;
-
-      // create the new market object from provided data
-      const newMarket = {
-        //market objects => ID:value , location: value, cards, percent of total
-        marketId: currMarketId,
-        marketLocation: state.newLocation,
-        marketCards: 1,
-        marketPercent: (1 / currTotalCards) * 100,
-      };
-
-      // push the new market onto a copy of the market list
-      const marketList = state.marketList.slice();
-      marketList.push(newMarket);
-      console.log('new market', marketList);
-
-      //changes percentages of other cards
-      for (let i = 0; i < marketList.length - 1; i++) {
-        const corrMarket = {};
-        corrMarket.marketId = marketList[i].marketId;
-        corrMarket.marketLocation = marketList[i].marketLocation;
-        corrMarket.marketCards = marketList[i].marketCards;
-        corrMarket.marketPercent =
-          (corrMarket.marketCards / currTotalCards) * 100;
-        marketList[i] = Object.assign({}, corrMarket);
-      }
-      // return updated state
-      return Object.assign({}, state, {
-        totalMarkets: currTotalMarkets,
-        totalCards: currTotalCards,
-        marketList: marketList,
-        lastMarketId: currMarketId,
-        newLocation: '',
-      });
-    },
-    setNewLocation: (state, action) => {
-      // console.log('new location', action.payload);
-      return Object.assign({}, state, {
-        newLocation: action.payload,
-      });
-    },
-    addCard: (state, action) => {
-      const currentMarketList = state.marketList.slice();
-      const currentTotalCards = state.totalCards + 1;
-
-      //go through marketList until we find our object with action.paylod as marketID
-      for (let i = 0; i < currentMarketList.length; i++) {
-        if (currentMarketList[i].marketId === action.payload) {
-          const correctMarket = {};
-          correctMarket.marketId = currentMarketList[i].marketId;
-          correctMarket.marketLocation = currentMarketList[i].marketLocation;
-          correctMarket.marketCards = currentMarketList[i].marketCards + 1;
-          correctMarket.marketPercent =
-            (correctMarket.marketCards / currentTotalCards) * 100;
-          currentMarketList[i] = Object.assign({}, correctMarket);
-
-          // currentMarketList[i].marketCards++;
-          break;
-        }
-      }
-
-      for (let i = 0; i < currentMarketList.length; i++) {
-        const corrMarket = {};
-        if (currentMarketList[i].marketId !== action.payload) {
-          corrMarket.marketId = currentMarketList[i].marketId;
-          corrMarket.marketLocation = currentMarketList[i].marketLocation;
-          corrMarket.marketCards = currentMarketList[i].marketCards;
-          corrMarket.marketPercent =
-            (corrMarket.marketCards / currentTotalCards) * 100;
-          currentMarketList[i] = Object.assign({}, corrMarket);
-        }
-      }
-
-      return Object.assign({}, state, {
-        //replacing totalCards and marketList in our state
-        totalCards: currentTotalCards,
-        marketList: currentMarketList,
-      });
-    },
-    deleteCard: (state, action) => {
-      const currentMarketList = state.marketList.slice();
-      const currentTotalCards = state.totalCards - 1;
-      let currentTotalMarkets = state.totalMarkets;
-
-      for (let i = 0; i < currentMarketList.length; i++) {
-        if (currentMarketList[i].marketId === action.payload) {
-          if (currentMarketList[i].marketCards - 1 === 0) {
-            currentMarketList.splice(i, 1);
-            currentTotalMarkets--;
-          } else {
-            const correctMarket = {};
-            correctMarket.marketId = currentMarketList[i].marketId;
-            correctMarket.marketLocation = currentMarketList[i].marketLocation;
-            correctMarket.marketCards = currentMarketList[i].marketCards - 1;
-            correctMarket.marketPercent =
-              (correctMarket.marketCards / currentTotalCards) * 100;
-            currentMarketList[i] = Object.assign({}, correctMarket);
-          }
-
-          break;
-        }
-      }
-
-      for (let i = 0; i < currentMarketList.length; i++) {
-        const corrMarket = {};
-        if (currentMarketList[i].marketId !== action.payload) {
-          corrMarket.marketId = currentMarketList[i].marketId;
-          corrMarket.marketLocation = currentMarketList[i].marketLocation;
-          corrMarket.marketCards = currentMarketList[i].marketCards;
-          corrMarket.marketPercent =
-            (corrMarket.marketCards / currentTotalCards) * 100;
-          currentMarketList[i] = Object.assign({}, corrMarket);
-        }
-      }
-
-      return Object.assign({}, state, {
-        totalCards: currentTotalCards,
-        marketList: currentMarketList,
-        totalMarkets: currentTotalMarkets,
-      });
-    },
+    populateResults: (state, action) => {
+      const parsedObject = parseFlights(action.payload);
+      parsedObject.url = action.payload.search_metadata.google_flights_url;
+      parsedObject.airports = action.payload.airports;
+      console.log('in reducer', parsedObject);
+      return {...state, results: parsedObject}
+    }
   },
 });
 
-export const { addCard, addMarket, setNewLocation, deleteCard } =
-  travelSlice.actions;
-
+export const { populateState, populateResults } = travelSlice.actions;
 export default travelSlice.reducer;
