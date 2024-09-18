@@ -7,13 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
 import SignupComponent from './Signup.jsx';
+import LoginComponent from './Login.jsx';
 
 const Navbar = () => {
-    // const [open, setOpen] = React.useState(false);
-
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // }
 
 return (
     <AppBar position="static">
@@ -28,12 +24,13 @@ return (
             <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Navbar
+            Travel Doer
         </Typography>
         <Box>
             <Button color="inherit">Home</Button>
             <Button color="inherit">About</Button>
             <Button color="inherit">Contact</Button>
+            <LoginComponent/>
             <SignupComponent/>
         </Box>
         </Toolbar>

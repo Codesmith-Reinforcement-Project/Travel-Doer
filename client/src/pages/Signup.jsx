@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
 
 function signup() {
   const [open, setOpen] = React.useState(false);
@@ -28,12 +29,26 @@ function signup() {
         onClose={handleClose}
         PaperProps={{
           component: 'form',
-          onSubmit: (event) => {
+          onSubmit: async (event) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
             const email = formJson.email;
+            const password = formJson.password;
             console.log(email);
+            console.log(password);
+
+            try {
+              const response = await axios.post('http://localhost:8080/api/auth/signup', {
+                email: email,
+                password: password
+              });
+            } catch (error) {
+              console.error('Error signing up:', error);
+              // Handle network or other errors
+            }
+
+
             handleClose();
           },
         }}
@@ -53,11 +68,24 @@ function signup() {
             type="email"
             fullWidth
             variant="standard"
+            size = "large"
+          />
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+            fullWidth
+            variant="standard"
+            size = "normal"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
+          <Button type="submit">Sign up</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

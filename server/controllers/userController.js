@@ -5,6 +5,7 @@ const userController = {
   // Checks login credentials against existing rows in database. Returns a boolean
   async login(req, res, next) {
     try {
+      console.log(req.body)
       const data = [req.body.email];
       const string = `SELECT * FROM users
             WHERE email = $1`;
