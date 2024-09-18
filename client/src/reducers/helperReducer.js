@@ -11,6 +11,7 @@ const parseFlights = (flights) => {
           arrival: ele.arrival_airport,
           airline: ele.airline,
           logo: ele.airline_logo,
+          duration: ele.duration,
           class: ele.travel_class,
           moreInfo: ele.extensions
         })
@@ -18,7 +19,7 @@ const parseFlights = (flights) => {
 
       const flightData = {
         flightsInfo,
-        duration: obj.total_duration,
+        total_duration: obj.total_duration,
         price: obj.price,
         moreInfo: obj.extensions
       };
@@ -35,6 +36,7 @@ const parseFlights = (flights) => {
           arrival: ele.arrival_airport,
           airline: ele.airline,
           logo: ele.airline_logo,
+          duration: ele.duration,
           class: ele.travel_class,
           moreInfo: ele.extensions
         })
@@ -42,7 +44,7 @@ const parseFlights = (flights) => {
 
       const flightData = {
         flightsInfo,
-        duration: obj.total_duration,
+        total_duration: obj.total_duration,
         price: obj.price,
         moreInfo: obj.extensions
       };

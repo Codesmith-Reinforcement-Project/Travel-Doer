@@ -12,10 +12,13 @@ const initialState = {
   results array format
     url : the flight url to be saved
     bestflights: [{
-      flightsInfo: [{departure, arrival, airline, logo, class, moreInfo: []}, {}, ..., {}],
-      duration, price, moreInfo: []
+      flightsInfo: [{departure, arrival, airline, logo, duration class, moreInfo: []}, {}, ..., {}],
+      total_duration, 
+      price, 
+      moreInfo: []
     }, {}, ..., {}]
     otherflights: [] (same structure as bestflights)
+    airports: [] (same as documentation)
   */
 };
 
@@ -33,6 +36,7 @@ const travelSlice = createSlice({
     populateResults: (state, action) => {
       const parsedObject = parseFlights(action.payload);
       parsedObject.url = action.payload.search_metadata.google_flights_url;
+      parsedObject.airports = action.payload.airports;
       console.log('in reducer', parsedObject);
       return {...state, results: parsedObject}
     }
