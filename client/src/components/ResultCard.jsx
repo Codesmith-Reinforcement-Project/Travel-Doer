@@ -32,18 +32,18 @@ export default function ResultCard({
   const price = locale.price;
   // if (best_flights[0].layovers.length)
   // const arrCity = locale.airports[0].arrival[0].city;
-  // const arrCityPic = airports[0].arrival[0].image; //<----
+  const arrCityPic = airports[0].arrival[0].image; //<----
   // const arrCityPicThumb = airports[0].arrival[0].thumbnail; //<----
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, color: '#e86f68', bgcolor: '#c2b28f' }}>
       <CardActionArea onClick={cardClick}>
         <CardContent>
           <Typography gutterBottom variant='h5' component='div'>
             {arrAirport}
           </Typography>
           <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-            {price}
+            ${price}
           </Typography>
         </CardContent>
         {/* <CardActions>
@@ -52,7 +52,7 @@ export default function ResultCard({
         </CardActions> */}
         <CardMedia
           sx={{ height: 140 }}
-          image='/static/images/cards/contemplative-reptile.jpg'
+          image={arrCityPic}
           title='green iguana'
         />
       </CardActionArea>
