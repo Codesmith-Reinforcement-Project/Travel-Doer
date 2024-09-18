@@ -1,21 +1,95 @@
-const login = () => {
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
+
+function login() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+ 
   return (
-    <div>
-      <form action='' method='post' className='login-form'>
-        <div className='login-form'>
-          <label>Enter your name: </label>
-          <input type='text' name='name' id='name' required />
-        </div>
-        <div className='login-form'>
-          <label>Enter your email: </label>
-          <input type='email' name='email' id='email' required />
-        </div>
-        <div className='login-form'>
-          <input type='submit' value='Login' />
-        </div>
-      </form>
-    </div>
+    <React.Fragment>
+      <Button variant="outlined" color="inherit" onClick={handleClickOpen}>
+        Log In
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        PaperProps={{
+          component: 'form',
+          onSubmit: async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.currentTarget);
+            const formJson = Object.fromEntries(formData.entries());
+            const email = formJson.email;
+            const password = formJson.password;
+            console.log(email);
+            console.log(password);
+
+            try {
+              const response = await axios.post('http://localhost:8080/api/auth/login', {
+                email: email,
+                password: password
+              });
+            } catch (error) {
+              console.error('Error signing up:', error);
+              // Handle network or other errors
+            }
+
+
+            handleClose();
+          },
+        }}
+      >
+        <DialogTitle>Log In</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To login, please enter your email address and password. 
+          </DialogContentText>
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="name"
+            name="email"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+            size = "large"
+          />
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+            fullWidth
+            variant="standard"
+            size = "normal"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit">Log In</Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
   );
-};
+}
 
 export default login;
