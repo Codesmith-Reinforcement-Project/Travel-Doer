@@ -1,17 +1,24 @@
 const db = require('../models/database.js');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 
 const userController = {
-  // Checks login credentials against existing rows in database. Returns a boolean
+  // Checks login credentials against existing rows in database.
   async login(req, res, next) {
+
     try {
-      const data = [req.body.email];
+      // checks for username in database
+      const data = [req.body.email.toLowerCase()];
       const string = `SELECT * FROM users
             WHERE email = $1`;
       const response = await db.query(string, data);
       if (response.rows.length > 0) {
+        // if there is a username, checks uses bcrypt to check hashed password against (hashed) password stored in the database
        if (await bcrypt.compare(req.body.password, response.rows[0].password));
-       res.send(true);
+       // if matching, creates a jwt and returns it.
+       const accessToken = jwt.sign(req.body.email.toLowerCase(), process.env.ACCESS_TOKEN_SECRET)
+       res.json({accessToken:accessToken});
+ 
       } else {
         res.status(200).json(false);
       }
