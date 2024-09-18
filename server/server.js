@@ -14,13 +14,13 @@ checkDatabaseConnection();
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('Hello');
-});
-
 app.use('/api/auth', userRoutes);
 
 app.use('/api', flightRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Hello');
+});
 
 app.use((req, res) => {
   res.status(404).send('Page not found');
