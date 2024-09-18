@@ -4,6 +4,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const {checkDatabaseConnection} = require('./models/database');
 const userRoutes = require('./routes/userRoutes');
+const flightRoutes = require('./routes/flightRoutes');
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 const bcrypt = require('bcrypt');
@@ -17,6 +19,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', userRoutes);
+
+app.use('/api', flightRoutes);
 
 app.use((req, res) => {
   res.status(404).send('Page not found');
