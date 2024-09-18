@@ -54,7 +54,7 @@ const SearchBar = () => {
   // console.log('origin', origin, 'destination', destination, 'budget', budget, 'initialdate', initialDate, 'returndate', returnDate);
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: "#7dbe98" }}>
         <Toolbar>
           {/* props.MarketID */}
           <div>
