@@ -53,12 +53,12 @@ const SearchBar = () => {
   return (
     <div className='searchBox'>
       {/* props.MarketID */}
-      <div>
+      <div className = 'searchBox-text'>
         Origin
         <input id='originBox' onChange={handleInputChange(setOrigin)}></input>
       </div>
 
-      <div>
+      <div className = 'searchBox-text'>
         Destination
         <input
           id='destinationBox'
@@ -66,12 +66,12 @@ const SearchBar = () => {
         ></input>
       </div>
 
-      <div>
+      <div className = 'searchBox-text'>
         Budget
         <input id='budgetBox' onChange={handleInputChange(setBudget)}></input>
       </div>
 
-      <div>
+      <div className = 'searchBox-text'>
         Start Date
         <input
           id='initialDateBox'
@@ -79,7 +79,7 @@ const SearchBar = () => {
         ></input>
       </div>
 
-      <div>
+      <div className = 'searchBox-text'>
         End Date
         <input
           id='returnDateBox'
