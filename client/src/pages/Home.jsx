@@ -1,7 +1,7 @@
 const homepage = () => {
   return (
     <div>
-        <h1 className = 'home-div'> Travel-Doer
+        <h1 className = 'home-div'> Véntûre
         </h1>
         <h3 className = 'home-div'>
             Quality Traveling on a Budget
