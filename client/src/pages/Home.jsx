@@ -17,7 +17,7 @@ const homepage = () => {
         }}>
         Véntûre
         </Typography>
-        <SearchBar/>
+        {/* <SearchBar/> */}
     </div>
   );
 };
