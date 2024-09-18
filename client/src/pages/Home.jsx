@@ -4,9 +4,7 @@ import SearchBar from './../components/SearchBar';
 const homepage = () => {
   return (
     <div>
-      <SearchBar/>
       This is the homepage!
-        
       <div className = 'homepage-container'>
         <h1 className = 'home-div'> Véntûre
         </h1>
