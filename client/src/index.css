@@ -127,11 +127,15 @@ button:hover {
 /********** HOMEPAGE ***********/
 .homepage-container {
   width: 100%;
-  aspect-ratio: 100 / 29;
-}
-
-.homepage_img {
-  display:flex;
-  justify-content:center;
+  height: 100vh;
+  display: inline-block;
+  position: relative;
+  background: url('./assets/homepage.jpeg') no-repeat center top;
+  background-size: cover; /* Scale the image to cover the entire container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  display: flex;
+  justify-content: center; /* Center content horizontally (optional) */
+  align-items: center; /* Center content vertically (optional) */ 
 }
 /********** HOMEPAGE ***********/
