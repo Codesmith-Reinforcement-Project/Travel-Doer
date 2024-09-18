@@ -12,7 +12,11 @@ const initialState = {
   results array format
     url : the flight url to be saved
     bestflights: [{
-      flightsInfo: [{departure, arrival, airline, logo, duration class, moreInfo: []}, {}, ..., {}],
+      flightsInfo: [{ departure {            
+                        "name": "Beijing Capital International Airport",
+                        "id": "PEK",
+                        "time": "2023-10-03 15:10"
+                      }, arrival, airline, logo, duration, class, moreInfo: [] }, {}, ..., {}],
       total_duration, 
       price, 
       moreInfo: []
@@ -27,19 +31,20 @@ const travelSlice = createSlice({
   initialState,
   reducers: {
     populateState: (state, action) => {
-      const { origin, destination, budget, startDate, endDate } = action.payload;
+      const { origin, destination, budget, startDate, endDate } =
+        action.payload;
       // console.dir(state.origin);
       // console.log('newstuff', origin, destination, budget, startDate, endDate);
 
-      return {...state, origin, destination, budget, startDate, endDate, };
+      return { ...state, origin, destination, budget, startDate, endDate };
     },
     populateResults: (state, action) => {
       const parsedObject = parseFlights(action.payload);
       parsedObject.url = action.payload.search_metadata.google_flights_url;
       parsedObject.airports = action.payload.airports;
       console.log('in reducer', parsedObject);
-      return {...state, results: parsedObject}
-    }
+      return { ...state, results: parsedObject };
+    },
   },
 });
 
